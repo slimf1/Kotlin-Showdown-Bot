@@ -4,12 +4,12 @@ import com.slim.ktpsbot.context.Context
 
 abstract class Command {
     abstract val name: String
-    val aliases: Iterable<String> = emptyList()
-    val allowedInPm: Boolean = false
-    val wlOnly: Boolean = false
-    val pmOnly: Boolean = false
-    val requiredRank: Char = '&'
-    val helpMessage: String = ""
+    open val aliases: Iterable<String> = emptyList()
+    open val allowedInPm: Boolean = false
+    open val wlOnly: Boolean = false
+    open val pmOnly: Boolean = false
+    open val requiredRank: Char = '&'
+    open val helpMessage: String = ""
 
     abstract fun run(context: Context)
 

@@ -24,7 +24,7 @@ class RoomContext(
         if (!RANKS.containsKey(requiredRank) || !RANKS.containsKey(sender.rank)) {
             return false;
         }
-        return RANKS[requiredRank]!! >= RANKS[sender.rank]!!
+        return RANKS[sender.rank]!! >= RANKS[requiredRank]!!
     }
 
     override fun reply(message: String) {

@@ -1,11 +1,11 @@
 {
   "server": "sim3.psim.us",
   "port": 80,
-  "username": "",
-  "password": "",
-  "rooms": ["botdevelopment"],
+  "username": "TestBot",
+  "password": "pw",
+  "rooms": ["botdevelopment", "franais"],
   "defaultRoom": "botdevelopment",
-  "whitelist": [""],
+  "whitelist": ["panur"],
   "roomBlacklist": ["lobby"],
   "trigger": "-"
 }
