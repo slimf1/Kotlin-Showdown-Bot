@@ -1,0 +1,33 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+}
+
+group 'com.slim'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+    // For the websocket & http client
+    def ktor_version = "2.0.2"
+    implementation "io.ktor:ktor-client-core:$ktor_version"
+    implementation "io.ktor:ktor-client-cio:$ktor_version"
+    implementation "io.ktor:ktor-client-websockets:$ktor_version"
+
+    // For JSON serialization / deserialization
+    def gson_version = "2.9.0"
+    implementation "com.google.code.gson:gson:$gson_version"
+
+    // For testing
+    def junit_version = "5.8.1"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_version"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_version"
+
+    // In order to load the command classes by reflection
+    def reflections_version = "0.10.2"
+    implementation "org.reflections:reflections:$reflections_version"
+}
