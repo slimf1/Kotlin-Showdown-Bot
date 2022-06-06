@@ -17,4 +17,8 @@ class User(name: String, val rank: Char) {
             this.idle = false
         }
     }
+
+    override fun toString(): String {
+        return "User(rank=$rank, name='$name', idle=$idle, id='$id')"
+    }
 }

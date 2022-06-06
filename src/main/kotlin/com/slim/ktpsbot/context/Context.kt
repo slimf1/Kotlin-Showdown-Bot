@@ -24,4 +24,8 @@ abstract class Context(
     abstract fun reply(message: String)
     abstract fun sendHtml(html: String)
     abstract fun sendUpdatableHtml(id: String, html: String, changes: Boolean)
+
+    override fun toString(): String {
+        return "Context(bot=$bot, target='$target', sender=$sender, command='$command', isPm=$isPm, roomId='$roomId')"
+    }
 }

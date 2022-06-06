@@ -1,6 +1,7 @@
 package com.slim.ktpsbot.core
 
 import com.slim.ktpsbot.core.mock.MockClient
+import com.slim.ktpsbot.utils.Resource
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -12,7 +13,7 @@ internal class BotTest {
     @BeforeEach
     fun setUp() {
         mockClient = MockClient()
-        val configResource = Config::class.java.classLoader.getResource("config-test.json")
+        val configResource = Resource.loadResourceByName("config-test.json")
         bot = Bot(Config.fromFile(configResource!!.file), mockClient!!)
         mockClient?.receivedMessage(
             ">franais\n" +
@@ -23,7 +24,7 @@ internal class BotTest {
         mockClient?.receivedMessage(
             ">botdevelopment\n" +
             "|init|chat\n" +
-            "|title|Test Room 2|\n" +
+            "|title|Bot Development|\n" +
             "|users|4,*BotUser, Panur, RegularUser,#RoomOwner"
         )
     }
@@ -34,5 +35,9 @@ internal class BotTest {
         assertEquals(true, mockClient?.sentMessages?.isEmpty())
         mockClient?.receivedMessage(">franais\n|c:|1|+VoicedUser|-ping")
         assertEquals(1, mockClient?.sentMessages?.size)
+        assertEquals("franais|pong", mockClient?.sentMessages?.get(0))
+        mockClient?.receivedMessage(">botdevelopment\n|c:|1| Panur|-ping")
+        assertEquals(2, mockClient?.sentMessages?.size)
+        assertEquals("botdevelopment|pong", mockClient?.sentMessages?.get(1))
     }
 }

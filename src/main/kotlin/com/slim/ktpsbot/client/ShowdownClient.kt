@@ -39,7 +39,6 @@ class ShowdownClient : Client, AutoCloseable {
                 }
             }
         }
-        client.close()
     }
 
     override fun send(message: String) {

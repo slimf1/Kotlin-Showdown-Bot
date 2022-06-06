@@ -5,6 +5,11 @@ import com.slim.ktpsbot.core.MessageHandler
 
 class MockClient : Client {
 
+    var connected = false
+        private set
+    var loggedIn = false
+        private set
+
     val sentMessages: MutableList<String> = ArrayList()
     private var messageHandler: MessageHandler? = null
 
@@ -13,6 +18,7 @@ class MockClient : Client {
     }
 
     override fun connect(host: String, port: Int) {
+        connected = true
     }
 
     override fun send(message: String) {
@@ -20,6 +26,7 @@ class MockClient : Client {
     }
 
     override fun login(username: String, password: String, challstr: String) {
+        loggedIn = true
     }
 
     fun receivedMessage(message: String) {
