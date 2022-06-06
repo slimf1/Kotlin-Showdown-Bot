@@ -17,6 +17,7 @@ class Bot(val config: Config, private val client: Client) {
         .fold(HashMap()) { map, type ->
             val command = type.getDeclaredConstructor().newInstance() // Should have default constructor
             map[command.name] = command
+            command.aliases.forEach { map[it] = command }
             map
         }
 
@@ -85,7 +86,7 @@ class Bot(val config: Config, private val client: Client) {
         if (message.substring(0, triggerLength) != config.trigger) return
         val text = message.substring(triggerLength)
         val spaceIndex = text.indexOf(' ')
-        val command = if (spaceIndex > 0) text.substring(spaceIndex) else text.trim().lowercase()
+        val command = if (spaceIndex > 0) text.subSequence(0, spaceIndex).toString() else text.trim().lowercase()
         if (!commands.containsKey(command)) return
         val target = if (spaceIndex > 0) text.substring(spaceIndex + 1) else ""
         val context = RoomContext(

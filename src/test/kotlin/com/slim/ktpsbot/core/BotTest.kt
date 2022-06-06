@@ -40,4 +40,11 @@ internal class BotTest {
         assertEquals(2, mockClient?.sentMessages?.size)
         assertEquals("botdevelopment|pong", mockClient?.sentMessages?.get(1))
     }
+
+    @Test
+    fun testEvalCommand() {
+        mockClient?.receivedMessage(">botdevelopment\n|c:|1| Panur|-eval 4+2")
+        assertEquals(1, mockClient?.sentMessages?.size)
+        assertEquals("botdevelopment|Result: 6", mockClient?.sentMessages?.get(0))
+    }
 }
