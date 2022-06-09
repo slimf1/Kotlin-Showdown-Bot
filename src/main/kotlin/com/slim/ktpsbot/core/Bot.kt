@@ -70,7 +70,7 @@ class Bot(val config: Config, private val client: Client) {
 
     private fun checkConnection(parts: Array<String>) {
         var name = parts[2].substring(1)
-        if (name.contains('@')) name = name.dropLast(2)
+        if ('@' in name) name = name.dropLast(2)
         if (name != config.username) return
         println("Connection successful: Logged in as $name")
         for (room in config.rooms) {
@@ -80,7 +80,7 @@ class Bot(val config: Config, private val client: Client) {
     }
 
     private fun handleChatMessage(message: String, sender: String, roomId: String?, timestamp: Long) {
-        if (roomId == null || config.roomBlacklist.contains(roomId) || !rooms.containsKey(roomId)) return
+        if (roomId == null || roomId in config.roomBlacklist || !rooms.containsKey(roomId)) return
         val room = rooms[roomId]!!
         val triggerLength = config.trigger.length
         if (message.substring(0, triggerLength) != config.trigger) return

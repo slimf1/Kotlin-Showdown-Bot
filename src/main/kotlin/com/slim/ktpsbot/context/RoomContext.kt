@@ -18,7 +18,7 @@ class RoomContext(
     override val roomId: String = room.id
 
     override fun hasRank(requiredRank: Char): Boolean {
-        if (bot.config.whitelist.contains(sender.id)) {
+        if (sender.id in bot.config.whitelist) {
             return true
         }
         if (!RANKS.containsKey(requiredRank) || !RANKS.containsKey(sender.rank)) {

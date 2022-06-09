@@ -26,6 +26,6 @@ class PmContext(
 
     override fun sendUpdatableHtml(id: String, html: String, changes: Boolean) {
         val command = if (changes) "pmchangeuhtml" else "pmuhtml"
-        bot.say(bot.config.defaultRoom, "/pm $command ${sender.id}, $id, $html")
+        bot.say(bot.config.defaultRoom, "/$command ${sender.id}, $id, $html")
     }
 }

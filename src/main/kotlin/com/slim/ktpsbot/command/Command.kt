@@ -16,7 +16,7 @@ abstract class Command {
     fun call(context: Context) {
         if ((!pmOnly || context.isPm)
             && (!context.isPm || allowedInPm || pmOnly)
-            && (!wlOnly || context.bot.config.whitelist.contains(context.sender.id))
+            && (!wlOnly || context.sender.id in context.bot.config.whitelist)
             && context.hasRank(requiredRank)
         ) {
             run(context)
