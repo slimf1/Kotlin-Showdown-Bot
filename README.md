@@ -1,5 +1,5 @@
 # Kotlin Showdown Bot
-[WIP]
+Proof of concept of a [Showdown](https://pokemonshowdown.com/) chat bot in Kotlin.
 
 ## Installation
 * Clone this repository
